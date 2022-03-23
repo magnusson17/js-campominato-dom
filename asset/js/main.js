@@ -9,12 +9,13 @@ con difficoltà 2 => tra 1 e 81
 con difficoltà 3 => tra 1 e 49
 */
 
-/* Copiamo la griglia fatta ieri nella nuova repo e aggiungiamo la logica del gioco (attenzione: non bisogna copiare tutta la cartella dell'esercizio ma solo l'index.html, e le cartelle js/ css/ con i relativi script e fogli di stile, per evitare problemi con l'inizializzazione di git).
-Il computer deve generare 16 numeri casuali nel range dei numeri della griglia: le bombe.
-I numeri nella lista delle bombe non possono essere duplicati.
-In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
-La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.
-Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una b.
+/*
+1) Il computer deve generare 16 numeri casuali nel range dei numeri della griglia: le bombe.
+2) I numeri nella lista delle bombe non possono essere duplicati.
+3) In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
+4) La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.
+5) Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una b.
+
 BONUS:
 1- quando si clicca su una bomba e finisce la partita, evitare che si possa cliccare su altre celle
 2- quando si clicca su una bomba e finisce la partita, il software scopre tutte le bombe nascoste
@@ -24,7 +25,7 @@ con difficoltà 2 => tra 1 e 81
 con difficoltà 3 => tra 1 e 49
 Le bombe dovranno essere generate nello stesso range delle caselle di gioco.
 Consigli del giorno: :party_wizard:
-Scriviamo prima cosa vogliamo fare passo passo in italiano, dividiamo il lavoro in micro problemi. Ad esempio: Di cosa ho bisogno per generare i numeri? Proviamo sempre prima con dei console.log() per capire se stiamo ricevendo i dati giusti. Le validazioni e i controlli possiamo farli anche in un secondo momento. */
+*/
 
 //Manipolazione DOM
 let levChoice = document.getElementById("lev-choice");
@@ -32,6 +33,8 @@ let selectButtonDiv = document.getElementById("select-button-div");
 let refreshBtnDiv = document.getElementById("refresh-btn-div");
 
 let array = [];
+let bombsArray = [];
+let sixteenBombsArray = [];
 
 //prendo il .value di levChoice
 function levChoiceFunction() {
@@ -54,6 +57,19 @@ function levChoiceFunction() {
     }
     
     array = shuffle(array);
+
+    //1) Il computer deve generare 16 numeri casuali nel range dei numeri della griglia: le bombe.
+    for (b = 0; b < celNumber ; b++) {
+        bombsArray.push(b);
+    }
+
+    bombsArray = shuffle(bombsArray);
+
+    for (bomb = 0; bomb < 16 ; bomb++) {
+        sixteenBombsArray.push(bombsArray[bomb]);
+    }
+
+    console.log(sixteenBombsArray);
     
     for (let i = 0; i < celNumber; i++) {
         
@@ -78,9 +94,12 @@ function levChoiceFunction() {
         //aggiungo una function() anonima che si attiva al click del ELEMENTO
         box.addEventListener ("click", function() {
             //uso This per targhettizzare il box sul quale clicco, gli aggiungo una tot class
-            this.classList.add("clicked");
-            //immagazino il contenuto di This box dento una variabile (number)
-            // let number = this.innerHTML;
+            
+            if ( sixteenBombsArray.includes( parseInt(this.innerText) ) ) {
+                this.classList.add("bomb_class");
+            } else {
+                this.classList.add("clicked");                
+            }
         });
     }
     

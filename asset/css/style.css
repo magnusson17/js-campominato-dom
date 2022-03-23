@@ -276,6 +276,7 @@
     --border-color: white;
     --border-type: solid;
     --aqua: aqua;
+    --red: red;
 }
 
 .box_10per10 {
@@ -310,4 +311,8 @@
 /*clicked*/
 .clicked {
     background-color: var(--aqua);
+}
+
+.bomb_class {
+    background-color: var(--red);
 }
