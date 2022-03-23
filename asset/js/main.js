@@ -13,6 +13,7 @@ con difficoltà 3 => tra 1 e 49
 1) Il computer deve generare 16 numeri casuali nel range dei numeri della griglia: le bombe.
 2) I numeri nella lista delle bombe non possono essere duplicati.
 3) In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
+
 4) La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.
 5) Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una b.
 
@@ -24,17 +25,20 @@ con difficoltà 1 => tra 1 e 100
 con difficoltà 2 => tra 1 e 81
 con difficoltà 3 => tra 1 e 49
 Le bombe dovranno essere generate nello stesso range delle caselle di gioco.
-Consigli del giorno: :party_wizard:
 */
 
 //Manipolazione DOM
 let levChoice = document.getElementById("lev-choice");
 let selectButtonDiv = document.getElementById("select-button-div");
 let refreshBtnDiv = document.getElementById("refresh-btn-div");
+let punteggio = document.getElementById("punteggio");
 
 let array = [];
 let bombsArray = [];
 let sixteenBombsArray = [];
+
+//5) conta ogni punto che fai
+let conta = 0;
 
 //prendo il .value di levChoice
 function levChoiceFunction() {
@@ -43,10 +47,13 @@ function levChoiceFunction() {
 
     if (levChoice.value == "easy") {
         celNumber = 100;
+        maxConta = 10;
     } else if (levChoice.value == "medium") {
         celNumber = 81;
+        maxConta = 9;
     } else if (levChoice.value == "hard") {
         celNumber = 49;
+        maxConta = 7;
     } else {
         alert("ERRORE, selezionare un livello");
         refreshPage()
@@ -98,13 +105,16 @@ function levChoiceFunction() {
             if ( sixteenBombsArray.includes( parseInt(this.innerText) ) ) {
                 this.classList.add("bomb_class");
             } else {
-                this.classList.add("clicked");                
+                this.classList.add("clicked");
+                conta++
+                punteggio.innerHTML = `${conta}`              
             }
         });
     }
     
     //faccio apparire la griglia e il refresh btn, faccio sparire il select
     grid.classList.remove("d_none");
+    punteggio.classList.remove("d_none");
     refreshBtnDiv.classList.remove("d_none");
     selectButtonDiv.classList.add("d_none");
 }
