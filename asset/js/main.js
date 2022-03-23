@@ -27,73 +27,70 @@ Consigli del giorno: :party_wizard:
 Scriviamo prima cosa vogliamo fare passo passo in italiano, dividiamo il lavoro in micro problemi. Ad esempio: Di cosa ho bisogno per generare i numeri? Proviamo sempre prima con dei console.log() per capire se stiamo ricevendo i dati giusti. Le validazioni e i controlli possiamo farli anche in un secondo momento. */
 
 //Manipolazione DOM
-let grid = document.getElementById("grid");
 let levChoice = document.getElementById("lev-choice");
 let selectButtonDiv = document.getElementById("select-button-div");
 let refreshBtnDiv = document.getElementById("refresh-btn-div");
 
+let array = [];
+
 //prendo il .value di levChoice
 function levChoiceFunction() {
-    //quindi a seconda del livello genero tot caselle (100 in questo caso -> 10x10)
+    
+    let celNumber;
+
     if (levChoice.value == "easy") {
-        for (let i = 0; i < 100; i++) {
-
-            //assegno ad una variabile la creazione di un elemento
-            let box = document.createElement("div");
-            //a questo ELEMENTO inserisco un numero casuale grazie alla function getRandomInt(min, max)
-            box.innerHTML += getRandomInt(1, 100);
-            //allo stesso ELEMENTO gli assegno una specifica class a seconda di quante caselle contiene
-            box.classList.add("box_10per10");
-            //appendo tale ELEMENTO al suo contenitore, in questo caso grid
-            grid.appendChild(box);
-
-            //aggiungo una function() anonima che si attiva al click del ELEMENTO
-            box.addEventListener ("click", function() {
-                //uso This per targhettizzare il box sul quale clicco, gli aggiungo una tot class
-                this.classList.add("clicked");
-                //immagazino il contenuto di This box dento una variabile (number)
-                // let number = this.innerHTML;
-            })
-
-        }
+        celNumber = 100;
     } else if (levChoice.value == "medium") {
-
-        for (let i = 0; i < 81; i++) {
-
-            let box = document.createElement("div");
-            box.innerHTML += getRandomInt(1, 100);
-            box.classList.add("box_9per9");
-            grid.appendChild(box);
-
-            box.addEventListener ("click", function() {
-                this.classList.add("clicked");
-            })
-
-        }
+        celNumber = 81;
     } else if (levChoice.value == "hard") {
-
-        for (let i = 0; i < 49; i++) {
-
-            let box = document.createElement("div");
-            box.innerHTML += getRandomInt(1, 100);
-            box.classList.add("box_7per7");
-            grid.appendChild(box);
-
-            box.addEventListener ("click", function() {
-                this.classList.add("clicked");
-            })
-
-        }
+        celNumber = 49;
     } else {
         alert("ERRORE, selezionare un livello");
         refreshPage()
     }
+    
+    for (z = 1; z < celNumber + 1; z++) {
+        array.push(z);
+    }
+    
+    array = shuffle(array);
+    
+    for (let i = 0; i < celNumber; i++) {
+        
+        let grid = document.getElementById("grid");
+        //assegno ad una variabile la creazione di un elemento
+        let box = document.createElement("div");
+        
+        //appendo tale ELEMENTO al suo contenitore, in questo caso grid
+        grid.appendChild(box);
+        
+        //allo stesso ELEMENTO gli assegno una specifica class a seconda di quante caselle contiene
+        if (celNumber == 100) {
+            box.classList.add("box_10per10");
+        } else if (celNumber == 81) {
+            box.classList.add("box_9per9");
+        } else if (celNumber == 49) {
+            box.classList.add("box_7per7");
+        }
+
+        box.innerHTML += `<span>${array[i]}</span>`
+        
+        //aggiungo una function() anonima che si attiva al click del ELEMENTO
+        box.addEventListener ("click", function() {
+            //uso This per targhettizzare il box sul quale clicco, gli aggiungo una tot class
+            this.classList.add("clicked");
+            //immagazino il contenuto di This box dento una variabile (number)
+            // let number = this.innerHTML;
+        });
+    }
+    
     //faccio apparire la griglia e il refresh btn, faccio sparire il select
     grid.classList.remove("d_none");
     refreshBtnDiv.classList.remove("d_none");
     selectButtonDiv.classList.add("d_none");
-
 }
+
+/*FUNCTIONS*/ 
 
 //function per generare num random
 function getRandomInt(min, max) {
@@ -102,9 +99,13 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
+//function shuffle
+function shuffle(tot) {
+    return tot.sort( () => Math.random() - 0.5 );
+}
+
 //function per refreshare la pagina
 function refreshPage() {
     window.location.reload()
 }
-
 
