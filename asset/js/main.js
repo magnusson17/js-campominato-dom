@@ -1,106 +1,93 @@
-/*1) L’utente sceglie pari o dispari e inserisce un numero da 1 a 5.
-2) Generiamo un numero random (sempre da 1 a 5) per il computer (usando una funzione).
-3) Sommiamo i due numeri
-4) Stabiliamo se la somma dei due numeri è pari o dispari (usando una funzione)
-5) Dichiariamo chi ha vinto.*/
+/*
+1) Generare una griglia di gioco quadrata, simile a quella dello screenshot, in cui ogni cella contiene un numero tra 1 e 100.
+2) Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
 
-//👊✊🔥
-//prompt e container user names
-let userName = prompt("Inserisci uno user name");
-let userNameP = document.getElementById("user-name-p");
-//id versus (SE IL PUNTO 6.1 E' COMMENTATO QUESTA MANIPOLAZIONE DEL DOM E' SUPERFLUA)
-let versus = document.getElementById("versus")
-//container principali, contengono le hands emoji
-let myContainer = document.getElementById("my-container");
-let pcContainer = document.getElementById("pc-container");
-//variabili che mi servono per trasferire al loro interno il .value dei button
-let askEvenOdd;
-let askNumber;
-//gli Id dei container di label, input e button
-let containerAskEvenOdd = document.getElementById("container-ask-even-odd");
-let containerAskNumber = document.getElementById("container-ask-number");
-//gli input dei button
-let evenOddInput = document.getElementById("even-odd-input");
-let numberChoiceInput = document.getElementById("number-choice-input");
-//i div che contengono il risultato
-let prova = document.getElementById("prova");
-let prova2 = document.getElementById("prova2");
-//
-let numRandom;
-let sum;
+Bonus
+3) Permettere all'utente di indicare una difficoltà in base alla quale viene generato un numero variabile di celle:
+con difficoltà 1 => tra 1 e 100
+con difficoltà 2 => tra 1 e 81
+con difficoltà 3 => tra 1 e 49
+*/
 
-//0) metti a video lo user name
-userNameP.innerHTML = `${userName}`
+//Manipolazione DOM
+let grid = document.getElementById("grid");
+let levChoice = document.getElementById("lev-choice");
+let selectButtonDiv = document.getElementById("select-button-div");
+let refreshBtnDiv = document.getElementById("refresh-btn-div");
 
-//1.1) L’utente sceglie pari o dispari (quindi sblocco con remove(v_hiden) il passaggio successivo).
-function avantiOne() {
-    containerAskNumber.classList.remove("v_hidden");
-    askEvenOdd = evenOddInput.value;
-    return askEvenOdd;
-}
+//prendo il .value di levChoice
+function levChoiceFunction() {
+    //quindi a seconda del livello genero tot caselle (100 in questo caso -> 10x10)
+    if (levChoice.value == "easy") {
+        for (let i = 0; i < 100; i++) {
 
-//1.2) L’utente inserisce un numero da 1 a 5 (poi quando schiaccia avanti fa partire tutte le operazioni).
-function avantiTwo() {
-    askNumber = parseInt(numberChoiceInput.value);
-    if (askNumber === 5) {
-        myContainer.innerHTML = `<div>🖐</div>`
-    } else if (askNumber === 4) {
-        myContainer.innerHTML = `<div><i class="fa-solid fa-hand-fist text_FFC83D contorno mt_30px"></i></div>`
-    } else if (askNumber === 3) {
-        myContainer.innerHTML = `<div>🤟</div>`
-    } else if (askNumber === 2) {
-        myContainer.innerHTML = `<div>✌</div>`
-    } else if (askNumber === 1) {
-        myContainer.innerHTML = `<div>☝</div>`
-    }
+            //assegno ad una variabile la creazione di un elemento
+            let box = document.createElement("div");
+            //a questo ELEMENTO inserisco un numero casuale grazie alla function getRandomInt(min, max)
+            box.innerHTML += getRandomInt(1, 100);
+            //allo stesso ELEMENTO gli assegno una specifica class a seconda di quante caselle contiene
+            box.classList.add("box_10per10");
+            //appendo tale ELEMENTO al suo contenitore, in questo caso grid
+            grid.appendChild(box);
 
-    //2) Generiamo (QUA LO STO RICHIAMANDO) un numero random (sempre da 1 a 5) per il computer (usando una funzione)
-    randomNumber();
-    if (numRandom === 5) {
-        pcContainer.innerHTML = `<div>🖐</div>`
-    } else if (numRandom === 4) {
-        pcContainer.innerHTML = `<div><i class="fa-solid fa-hand-fist text_FFC83D contorno mt_30px"></i></div>`
-    } else if (numRandom === 3) {
-        pcContainer.innerHTML = `<div>🤟</div>`
-    } else if (numRandom === 2) {
-        pcContainer.innerHTML = `<div>✌</div>`
-    } else if (numRandom === 1) {
-        pcContainer.innerHTML = `<div>☝</div>`
-    }
+            //aggiungo una function() anonima che si attiva al click del ELEMENTO
+            box.addEventListener ("click", function() {
+                //uso This per targhettizzare il box sul quale clicco, gli aggiungo una tot class
+                this.classList.add("clicked");
+                //immagazino il contenuto di This box dento una variabile (number)
+                // let number = this.innerHTML;
+            })
 
-    //3) Sommiamo i due numeri
-    sum = askNumber + numRandom;
-    if (sum % 2 === 0) {
-        prova.innerHTML = `${askNumber} e ${numRandom} fa ${sum}, <span class="font_style_italic">pari</span>`;
+        }
+    } else if (levChoice.value == "medium") {
+
+        for (let i = 0; i < 81; i++) {
+
+            let box = document.createElement("div");
+            box.innerHTML += getRandomInt(1, 100);
+            box.classList.add("box_9per9");
+            grid.appendChild(box);
+
+            box.addEventListener ("click", function() {
+                this.classList.add("clicked");
+            })
+
+        }
+    } else if (levChoice.value == "hard") {
+
+        for (let i = 0; i < 49; i++) {
+
+            let box = document.createElement("div");
+            box.innerHTML += getRandomInt(1, 100);
+            box.classList.add("box_7per7");
+            grid.appendChild(box);
+
+            box.addEventListener ("click", function() {
+                this.classList.add("clicked");
+            })
+
+        }
     } else {
-        prova.innerHTML = `${askNumber} e ${numRandom} fa ${sum}, <span class="font_style_italic">dispari</span>`;
+        alert("ERRORE, selezionare un livello");
+        refreshPage()
     }
+    //faccio apparire la griglia e il refresh btn, faccio sparire il select
+    grid.classList.remove("d_none");
+    refreshBtnDiv.classList.remove("d_none");
+    selectButtonDiv.classList.add("d_none");
 
-    //5) Dichiariamo chi ha vinto.
-    if (askEvenOdd == isEvenOrOdd(sum)) {
-        prova2.innerHTML = `<div class="text_green fs_2em">hai vinto! <i class="fa-solid fa-face-grin-squint"></i></div>`
-    } else {
-        prova2.innerHTML = `<div class="text_red fs_2em">hai perso <i class="fa-solid fa-face-sad-cry"></i></div>`
-    }
-
-    //6.1) Togli l'animazione
-    pcContainer.classList.remove("shake_pc_fist");
-    myContainer.classList.remove("shake_my_fist");
-    //6.2) Togli VS
-    // versus.classList.add("d_none");
 }
 
-//2) Generiamo un numero random (sempre da 1 a 5) per il computer (usando una funzione).
-function randomNumber() {
-    numRandom = Math.floor(Math.random() * 5) + 1;
-    return numRandom;
+//function per generare num random
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
 }
 
-//4) Stabiliamo se la somma dei due numeri è pari o dispari (usando una funzione)
-function isEvenOrOdd(number) {
-    if (number % 2 === 0) {
-        return "pari"
-    } else {
-        return "dispari"
-    }
+//function per refreshare la pagina
+function refreshPage() {
+    window.location.reload()
 }
+
+
