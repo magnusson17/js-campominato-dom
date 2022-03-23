@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* body {
+    background-image: url("../img/dice-bg.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+} */
+/*bg color*/
+.bg_F0466F {
+    background-color: #F0466F;
+}
+
+.bg_0BD6A1 {
+    background-color: #0BD6A1;
+}
+
+.bg_FFD04C {
+    background-color: #FFD04C;
+}
+
+.bg_FFD166_rgba_05 {
+    background-color: rgba(255, 209, 102, 0.5);
+}
+
+.bg_FFD166 {
+    background-color: #FFD166;
+}
+
+.bg_1389B2 {
+    background-color: #1389B2;
+}
+
+.bg_083B4C {
+    background-color: #083B4C;
+}
+/*width*/
+.w_100 {
+    width: 100%;
+}
+
+.w_50 {
+    width: 50%;
+}
+
+.w_75_vw {
+    width: 75vw;
+}
+
+.w_100px {
+    width: 100px;
+}
+/*height*/
+.h_100px {
+    height: 100px;
+}
+
+.h_400px {
+    height: 400px;
+}
+/*text property*/
+.text_centered {
+    text-align: center;
+}
+
+.text_white {
+    color: white;
+}
+
+.text_green {
+    color: green;
+}
+
+.text_red {
+    color: red;
+}
+
+.text_yellow {
+    color: yellow;
+}
+
+.text_E4A316 {
+    color: #E4A316;
+}
+
+.text_FFC83D {
+    color: #FFC83D;
+}
+
+.contorno {
+    /* 6 pixel black shadow to left, top, right and bottom */
+    text-shadow: -6px 0 black, 0 6px black, 6px 0 black, 0 -6px black;
+  }
+
+.fs_1_5em {
+    font-size: 1.5em;
+}
+
+.fs_2em {
+    font-size: 2em;
+}
+
+.fs_3em {
+    font-size: 3em;
+}
+
+.fs_4em {
+    font-size: 4em;
+}
+
+.fs_6em {
+    font-size: 6em;
+}
+
+.font_style_italic {
+    font-style: italic;
+}
+
+.font_style_normal {
+    font-style: normal;
+}
+/*border*/
+.border_rad_5px {
+    border-radius: 5px;
+}
+
+.border_rad_20px {
+    border-radius: 20px;
+}
+/*margin*/
+.m_0_auto {
+    margin: 0 auto;
+}
+
+.my_30px {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.my_50px {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.mt_10px {
+    margin-top: 10px;
+}
+
+.mt_30px {
+    margin-top: 30px;
+}
+
+.mb_10px {
+    margin-bottom: 10px;
+}
+/*padding*/
+.p_20px {
+    padding: 20px;
+}
+
+.py_5px {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.px_5px {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.ps_50px {
+    padding-left: 50px;
+}
+/*display flex*/
+.d_flex {
+    display: flex;
+}
+
+.flex_wrap {
+    flex-wrap: wrap;
+}
+
+.flex_direction_column {
+    flex-direction: column;
+}
+
+.align_items_center {
+    align-items: center;
+}
+
+.justify_content_center {
+    justify-content: center;
+}
+
+.justify_content_between {
+    justify-content: space-between;
+}
+
+.justify_content_around {
+    justify-content: space-around;
+}
+
+.justify_self_center {
+    justify-self: center;
+}
+/*display (general)*/
+.d_inline_block {
+    display: inline-block;
+}
+
+.d_block {
+    display: block;
+}
+
+.d_none {
+    display: none;
+}
+
+.v_hidden {
+    visibility: hidden;
+}
+/*cursor pointer*/
+.cursor_pointer:hover {
+    cursor: pointer;
+}
+/*multi-use classes*/
+.input_basic {
+    border: none;
+    border: 1px solid black;
+    background-color: white;
+    font-size: 1.3em;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.btn_basic {
+    border: none;
+    border: 1px solid black;
+    background-color: white;
+    font-size: 1.3em;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.btn_basic:hover {
+    background-color: #083B4C;
+    color: white;
+    cursor: pointer;
+}
+/*ANIMATION*/
+.shake_my_fist {
+    animation: myShake 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes myShake {
+    0% { transform: rotate(20deg); }
+    10% { transform: rotate(0deg); }
+    20% { transform: rotate(-20deg); }
+    30% { transform: rotate(0deg); }
+    40% { transform: rotate(20deg); }
+    50% { transform: rotate(0deg); }
+    60% { transform: rotate(-20deg); }
+    70% { transform: rotate(0deg); }
+    80% { transform: rotate(0deg); }
+    90% { transform: rotate(0deg); }
+    100% { transform: rotate(20deg); }
+  }
+
+.shake_pc_fist {
+    animation: pcShake 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pcShake {
+    0% { transform: rotate(-20deg); }
+    10% { transform: rotate(0deg); }
+    20% { transform: rotate(20deg); }
+    30% { transform: rotate(0deg); }
+    40% { transform: rotate(-20deg); }
+    50% { transform: rotate(0deg); }
+    60% { transform: rotate(20deg); }
+    70% { transform: rotate(0deg); }
+    80% { transform: rotate(0deg); }
+    90% { transform: rotate(0deg); }
+    100% { transform: rotate(-20deg); }
+  }
+  
+  

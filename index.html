@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./asset/css/style.css">
+    <title>pari dispari</title>
+</head>
+<body class="bg_0BD6A1">
+
+    <div class="w_75_vw m_0_auto my_30px">
+        <!-- <h1 class="w_100 text_centered my_30px">PARI O DISPARI</h1> -->
+        <div class="w_100 d_flex flex_direction_column align_items_center">
+            <div id="container-ask-even-odd" class="d_flex flex_direction_column align_items_center">
+                <label for="even-odd-input" class="mb_10px fs_2em">Pari o dispari?</label>
+                <select name="even-odd-input" id="even-odd-input" class="input_basic mb_10px cursor_pointer">
+                    <option value="" disabled selected>Scegli</option>
+                    <option value="pari">Pari</option>
+                    <option value="dispari">Dispari</option>
+                </select>
+                <button onclick="avantiOne()" class="btn_basic mb_10px">Avanti</button>
+
+            </div>
+    
+            <div id="container-ask-number" class="d_flex flex_direction_column align_items_center v_hidden">
+                <label for="number-choice-input" class="mb_10px">Che numero scegli?</label>
+                <input id="number-choice-input" class="input_basic mb_10px" type="number" min="1" max="5" placeholder="">
+                <button onclick="avantiTwo()" class="btn_basic">Avanti</button>
+            </div>
+        </div>
+
+        <div id="hands-container" class="d_flex justify_content_around align_items_center my_30px">
+            <div class="d_flex flex_direction_column align_items_center">
+                <p id="user-name-p"></p>
+                <div id="my-container" class="fs_6em shake_my_fist">👊</div>
+            </div>
+            <div id="versus" class="fs_4em font_style_italic"><span class="font_style_normal">🔥</span> vs <span class="font_style_normal">🔥</span></div>
+            <div class="d_flex flex_direction_column align_items_center">
+                <p>Computer</p>
+                <div id="pc-container" class="fs_6em shake_pc_fist">👊</div>
+            </div>
+        </div>
+
+        <div id="sum-and-result-container" class="d_flex flex_direction_column align_items_center">
+            <div id="prova" class="mb_10px"></div>
+            <div id="prova2" class="mb_10px"></div>
+            <button onclick="window.location.reload()" class="btn_basic">Gioca ancora</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./asset/js/main.js"></script>
+</body>
+</html>
