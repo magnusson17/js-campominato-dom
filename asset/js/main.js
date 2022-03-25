@@ -64,6 +64,7 @@ function levChoiceFunction() {
     }
     
     array = shuffle(array);
+    console.log(array);
 
     //1) Il computer deve generare 16 numeri casuali nel range dei numeri della griglia: le bombe.
     for (b = 0; b < celNumber ; b++) {
@@ -79,10 +80,14 @@ function levChoiceFunction() {
     console.log(sixteenBombsArray);
     
     for (let i = 0; i < celNumber; i++) {
-        
+
         let grid = document.getElementById("grid");
         //assegno ad una variabile la creazione di un elemento
         let box = document.createElement("div");
+        
+        if (sixteenBombsArray.includes(array[i])) {
+            box.classList.add("bomb_class_zero");
+        }
         
         //appendo tale ELEMENTO al suo contenitore, in questo caso grid
         grid.appendChild(box);
@@ -104,10 +109,15 @@ function levChoiceFunction() {
             
             if ( sixteenBombsArray.includes( parseInt(this.innerText) ) ) {
                 this.classList.add("bomb_class");
+                let queryBombs = document.querySelectorAll(".bomb_class_zero");
+                for (let i = 0; i < queryBombs.length; i++) {
+                    queryBombs[i].classList.add("bomb_class");
+                }
+                grid.classList.add("stop_events");
             } else {
                 this.classList.add("clicked");
-                conta++
-                punteggio.innerHTML = `${conta}`              
+                conta++;
+                punteggio.innerHTML = `${conta}`;              
             }
         });
     }

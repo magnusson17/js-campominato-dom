@@ -316,3 +316,7 @@
 .bomb_class {
     background-color: var(--red);
 }
+
+.stop_events {
+    pointer-events: none;
+}
