@@ -6,7 +6,13 @@
     font-family: 'Lato', sans-serif;
     font-family: 'Roboto', sans-serif;
 }
-
+/*bg img*/
+.bg_mines {
+    background-image: url("../img/Falklands-Minefield.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
 /*bg color*/
 .bg_F0466F {
     background-color: #F0466F;
@@ -171,6 +177,10 @@
     margin-top: 30px;
 }
 
+.mt_150px {
+    margin-top: 150px;
+}
+
 .mb_10px {
     margin-bottom: 10px;
 }
@@ -240,6 +250,7 @@
 .v_hidden {
     visibility: hidden;
 }
+
 /*cursor pointer*/
 .cursor_pointer:hover {
     cursor: pointer;
@@ -319,4 +330,58 @@
 
 .stop_events {
     pointer-events: none;
+}
+
+/*ANIMATIONS*/
+.div-title {
+    position: relative;
+    width: 700px;
+}
+
+.top-title {
+    position: absolute;
+    top: -20px;
+    left: -50px;
+    animation-name: move_bomb;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes move_bomb {
+    0% {
+        left: -100px;
+        top: -100px;
+        transform: rotate(0deg);
+    }
+    16.66% {
+        left: 40%;
+        top: -100px;
+        transform: rotate(180deg);
+    }
+    33.32% {
+        left: 100%;
+        top: -100px;
+        transform: rotate(360deg);
+    }
+    49.98% {
+        left: 100%;
+        top: 100px;
+        transform: rotate(540deg);
+    }
+    66.64% {
+        left: 40%;
+        top: 100px;
+        transform: rotate(720deg);
+    }
+    83.3% {
+        left: -100px;
+        top: 100px;
+        transform: rotate(900deg);
+    }
+    100% {
+        left: -100px;
+        top: -100px;
+        transform: rotate(1080deg);
+    }
 }

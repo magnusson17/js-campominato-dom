@@ -33,6 +33,7 @@ let selectButtonDiv = document.getElementById("select-button-div");
 let refreshBtnDiv = document.getElementById("refresh-btn-div");
 let punteggio = document.getElementById("punteggio");
 let winLoseDiv = document.getElementById("div-lose-div");
+let divTitle = document.getElementById("div-title");
 
 let array = [];
 let bombsArray = [];
@@ -133,6 +134,7 @@ function levChoiceFunction() {
     punteggio.classList.remove("d_none");
     refreshBtnDiv.classList.remove("d_none");
     selectButtonDiv.classList.add("d_none");
+    divTitle.classList.add("d_none");
 }
 
 /*FUNCTIONS*/ 
