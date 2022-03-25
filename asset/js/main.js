@@ -32,6 +32,7 @@ let levChoice = document.getElementById("lev-choice");
 let selectButtonDiv = document.getElementById("select-button-div");
 let refreshBtnDiv = document.getElementById("refresh-btn-div");
 let punteggio = document.getElementById("punteggio");
+let winLoseDiv = document.getElementById("div-lose-div");
 
 let array = [];
 let bombsArray = [];
@@ -114,10 +115,15 @@ function levChoiceFunction() {
                     queryBombs[i].classList.add("bomb_class");
                 }
                 grid.classList.add("stop_events");
+                // winLoseDiv.innerHTML = `<div class="text_red">BOMBA!<i class="fa-solid fa-bomb"></i> fine dei giochi</div>`;
             } else {
                 this.classList.add("clicked");
                 conta++;
-                punteggio.innerHTML = `${conta}`;              
+                if (maxConta === conta) {
+                    grid.classList.add("stop_events");
+                    // winLoseDiv.innerHTML = `<div class="text_green">Hai raggiunto il massimo punteggio <i class="fa-solid fa-face-laugh-squint"></i></div>`;
+                }
+                punteggio.innerHTML = `<div>Punteggio: ${conta}</div>`;              
             }
         });
     }
