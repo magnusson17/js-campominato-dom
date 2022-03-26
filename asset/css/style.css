@@ -159,6 +159,11 @@
     margin: 0 auto;
 }
 
+.my_10px {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .my_30px {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -185,6 +190,10 @@
     margin-bottom: 10px;
 }
 /*padding*/
+.p_20px {
+    padding: 20px;
+}
+
 .p_20px {
     padding: 20px;
 }
@@ -249,6 +258,11 @@
 
 .v_hidden {
     visibility: hidden;
+}
+
+/*position*/
+.p_relative {
+    position: relative;
 }
 
 /*cursor pointer*/
@@ -384,4 +398,10 @@
         top: -100px;
         transform: rotate(1080deg);
     }
+}
+
+#bomb-apears {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }

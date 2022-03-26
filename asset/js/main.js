@@ -28,12 +28,19 @@ Le bombe dovranno essere generate nello stesso range delle caselle di gioco.
 */
 
 //Manipolazione DOM
-let levChoice = document.getElementById("lev-choice");
-let selectButtonDiv = document.getElementById("select-button-div");
-let refreshBtnDiv = document.getElementById("refresh-btn-div");
-let punteggio = document.getElementById("punteggio");
-let winLoseDiv = document.getElementById("div-lose-div");
+
+// id del DIV che contiene il TITLE
 let divTitle = document.getElementById("div-title");
+// id del DIV della SELECT
+let selectButtonDiv = document.getElementById("select-button-div");
+// id della SELECT
+let levChoice = document.getElementById("lev-choice");
+// id del DIV che contiene il PUNTEGGIO
+let punteggio = document.getElementById("punteggio");
+// id del DIV che contiene il TEXT che appare a seconda se si vince o si perde
+let winLoseDiv = document.getElementById("win-lose-div");
+// id del DIV del REFRESH BUTTON
+let refreshBtnDiv = document.getElementById("refresh-btn-div");
 
 let array = [];
 let bombsArray = [];
@@ -115,16 +122,18 @@ function levChoiceFunction() {
                 for (let i = 0; i < queryBombs.length; i++) {
                     queryBombs[i].classList.add("bomb_class");
                 }
+                winLoseDiv.classList.remove("v_hidden")
+                winLoseDiv.innerHTML = `<div class="text_red">B<i class="fa-solid fa-bomb"></i>MBA! fine dei giochi</div>`;
                 grid.classList.add("stop_events");
-                // winLoseDiv.innerHTML = `<div class="text_red">BOMBA!<i class="fa-solid fa-bomb"></i> fine dei giochi</div>`;
             } else {
                 this.classList.add("clicked");
                 conta++;
                 if (maxConta === conta) {
+                    winLoseDiv.classList.remove("v_hidden")
+                    winLoseDiv.innerHTML = `<div class="text_green">Hai raggiunto il massimo punteggio <i class="fa-solid fa-face-laugh-squint"></i></div>`;
                     grid.classList.add("stop_events");
-                    // winLoseDiv.innerHTML = `<div class="text_green">Hai raggiunto il massimo punteggio <i class="fa-solid fa-face-laugh-squint"></i></div>`;
                 }
-                punteggio.innerHTML = `<div>Punteggio: ${conta}</div>`;              
+                punteggio.innerText = `Punteggio: ${conta}`;              
             }
         });
     }
