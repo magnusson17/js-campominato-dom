@@ -121,6 +121,7 @@ function levChoiceFunction() {
                 let queryBombs = document.querySelectorAll(".bomb_class_zero");
                 for (let i = 0; i < queryBombs.length; i++) {
                     queryBombs[i].classList.add("bomb_class");
+                    queryBombs[i].innerHTML = `<span class="final-bomb-rotation fs_1_5em">💣</span>`;
                 }
                 winLoseDiv.classList.remove("v_hidden")
                 winLoseDiv.innerHTML = `<div class="text_red">B<i class="fa-solid fa-bomb"></i>MBA! fine dei giochi</div>`;
